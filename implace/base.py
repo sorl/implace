@@ -1,7 +1,7 @@
 import os
 import json
 from PIL import Image
-from os.path import join as pjoin
+from os.path import dirname, join as pjoin
 
 
 IMPLACE_EXTENSIONS = os.environ.get('IMPLACE_EXTENSIONS', ('.png', '.jpg', '.jpeg'))
@@ -44,6 +44,9 @@ def create_images(path, idx):
     else:
         return
     for name, size in data.iteritems():
+        d = dirname(name)
+        if not os.path.isdir(d):
+            os.makedirs(d)
         full_path = pjoin(path, name)
         if not os.path.isfile(full_path):
             Image.new('L', size).save(pjoin(path, name))

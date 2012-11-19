@@ -44,10 +44,10 @@ def create_images(path, idx):
     else:
         return
     for name, size in data.iteritems():
-        d = dirname(name)
+        full_path = pjoin(path, name)
+        d = dirname(full_path)
         if not os.path.isdir(d):
             os.makedirs(d)
-        full_path = pjoin(path, name)
         if not os.path.isfile(full_path):
             Image.new('L', size).save(pjoin(path, name))
 

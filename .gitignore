@@ -1,0 +1,9 @@
+*.swp
+*.swo
+*.swn
+.~*
+.DS_Store
+._*
+*.pyc
+.lock-wscript
+build/

@@ -23,8 +23,12 @@ def create_index(path, idx, append=True):
             full_path = pjoin(root, fn)
             name = full_path.replace(path, '', 1).strip('/')
             if name not in data and ext in IMPLACE_EXTENSIONS:
-                im = Image.open(full_path)
-                data[name] = list(im.size)
+                try:
+                    im = Image.open(full_path)
+                except Exception:
+                    pass
+                else:
+                    data[name] = list(im.size)
     with open(idx, 'w') as fp:
         fp.write(json.dumps(data))
 
